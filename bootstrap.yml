@@ -1,0 +1,28 @@
+---
+- hosts: dev
+  user: ben
+  sudo: yes
+
+  tasks:
+  
+  - name: Install libqt4-dev
+    action: apt pkg=libqt4-dev state=installed
+
+  - name: Install qtcreator
+    action: apt pkg=qtcreator state=installed
+
+  # - name: Update APT package cache
+  #   action: apt update_cache=yes
+
+
+- hosts: dev
+  user: ben
+  sudo: no
+
+  tasks:    
+
+  - name: Install c2hs
+    action: command cabal install c2hs
+
+  - name: Run cabal-dev install
+    action: command /home/ben/.cabal/bin/cabal-dev install
